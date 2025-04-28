@@ -1,3 +1,4 @@
+
 import sqlite3
 
 
@@ -8,12 +9,19 @@ db = conn.cursor()
 # Step 1: Create the database table
 # Adjust the columns based on the structure of your CSV files
 create_table_sql = '''
-CREATE TABLE IF NOT EXISTS energy_data (
-    "Time Stamp" TEXT,
-    "Time Zone" TEXT,
-    "Name" TEXT,
-    "PTID" INTEGER,
-    "Load" REAL
+CREATE TABLE IF NOT EXISTS nyc_weather_hourly (
+    date TEXT,
+    temperature_2m REAL,
+    relative_humidity_2m REAL,
+    dew_point_2m REAL,
+    apparent_temperature REAL,
+    precipitation REAL,
+    snowfall REAL,
+    pressure_msl REAL,
+    cloud_cover REAL,
+    wind_speed_10m REAL,
+    wind_direction_10m REAL,
+    wind_gusts_10m REAL
 );
 '''
 
@@ -25,3 +33,6 @@ conn.commit()
 conn.close()
 
 print("Database and table created successfully.")
+
+
+
