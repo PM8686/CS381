@@ -16,3 +16,6 @@ Within this directory is the code to create the database for predicting energy c
         - create_table.py: creates the nyc_weather_hourly table to take the data in the csv
         - csv_to_sqlite.py: copies the data from the csv into nyc_weather_hourly
         - clean_weather_table.py: creates features (hour, day_of_week, is_weekend, year, month, day, is_holiday)
+- nyc.db: contains all of the tables created by the above scripts (energy_data, nyc_hourly_merged, nyc_energy, nyc_hourly_merged_added, nyc_energy_cleaned, nyc_weather_hourly, nyc_energy_hourly_cleaned, nyc_weather_hourly_cleaned)
+- nyc_energy_and_weather.db: database of just the final table (nyc_hourly_merged_added), this is what I turned in as it is much smaller in data than nyc.db
+- 
