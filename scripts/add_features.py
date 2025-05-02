@@ -11,9 +11,6 @@ merged_df = pd.read_sql_query("SELECT * FROM nyc_hourly_merged", conn)
 print(f"Shape before feature engineering: {merged_df.shape}")
 
 # Add Lag Features
-# merged_df = merged_df.sort_values(['year', 'month', 'day', 'hour'])  # Make sure sorted
-# merged_df['Load_lag1'] = merged_df['Load'].shift(1)
-# merged_df['Load_lag24'] = merged_df['Load'].shift(24)
 # Create a datetime column and sort
 merged_df['datetime'] = pd.to_datetime(merged_df[['year', 'month', 'day', 'hour']])
 merged_df = merged_df.sort_values('datetime').reset_index(drop=True)
@@ -40,11 +37,6 @@ rows_removed = merged_df.shape[0] - lagged_df.shape[0]
 print(f"Rows removed for lag + continuity: {rows_removed} ({rows_removed / merged_df.shape[0] * 100:.2f}%)")
 print(f"Shape after lag feature filtering: {lagged_df.shape}")
 
-
-# # Add Rolling Averages
-# merged_df['Load_roll3'] = merged_df['Load'].rolling(window=3, min_periods=1).mean()
-# merged_df['Load_roll24'] = merged_df['Load'].rolling(window=24, min_periods=1).mean()
-
 # Add season feature
 def get_season(month):
     if month in [12, 1, 2]: return 0  # winter
@@ -54,19 +46,7 @@ def get_season(month):
 
 lagged_df['season'] = lagged_df['month'].apply(get_season)
 
-# # # Add Extreme Weather Flags
-# # merged_df['extreme_cold'] = merged_df['temperature_2m'] < 32  # below freezing
-# # merged_df['extreme_heat'] = merged_df['temperature_2m'] > 85  # hot weather threshold
-
-# # # Add Hour Sin/Cos Encoding
-# # merged_df['hour_sin'] = np.sin(2 * np.pi * merged_df['hour'] / 24)
-# # merged_df['hour_cos'] = np.cos(2 * np.pi * merged_df['hour'] / 24)
-
-# # OPTIONAL: If you want to drop rows with NaNs from lagging
-# # (first few rows after shifting will have NaNs)
-# merged_df = merged_df.dropna().reset_index(drop=True)
-
-# DONE
+# show new features
 print(lagged_df.head())
 print(f"Shape after feature engineering: {lagged_df.shape}")
 

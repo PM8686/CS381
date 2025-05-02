@@ -1,5 +1,6 @@
 /csvs/
 /zips/
+/.venv/
 
 *.zip
 *.csv
