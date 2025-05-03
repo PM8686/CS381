@@ -6,8 +6,8 @@ import sqlite3
 conn = sqlite3.connect('../nyc.db')
 db = conn.cursor()
 
-# Step 1: Create the database table
-# Adjust the columns based on the structure of your CSV files
+# Create the database table
+# Adjust the columns based on the structure of your CSV file
 create_table_sql = '''
 CREATE TABLE IF NOT EXISTS nyc_weather_hourly (
     date TEXT,
@@ -32,7 +32,7 @@ conn.commit()
 # Close the connection after creating the table
 conn.close()
 
-print("Database and table created successfully.")
+print("Created nyc_weather_hourly table")
 
 
 

@@ -11,7 +11,7 @@ DB_PATH = os.path.join(BASE_DIR, 'nyc_energy.db')
 conn = sqlite3.connect(DB_PATH)
 db = conn.cursor()
 
-# Step 2: Import CSV data into the database
+# Import CSV data into the database
 for filename in os.listdir(CSV_DIR):
     if filename.endswith('.csv'):
         file_path = os.path.join(CSV_DIR, filename)
@@ -35,4 +35,4 @@ for filename in os.listdir(CSV_DIR):
 # Close the connection after all CSVs are processed
 conn.close()
 
-print("All CSV data imported successfully.")
+print("All CSV data imported.")

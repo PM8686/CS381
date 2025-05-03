@@ -29,4 +29,4 @@ with open(CSV_PATH, 'r') as f:
 conn.commit()
 conn.close()
 
-print("Weather CSV imported successfully.")
+print("Weather CSV imported")

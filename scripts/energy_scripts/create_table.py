@@ -24,4 +24,4 @@ conn.commit()
 # Close the connection after creating the table
 conn.close()
 
-print("Database and table created successfully.")
+print("energy_data table created")

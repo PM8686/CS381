@@ -39,31 +39,20 @@ print(bad_rows)
 # Replace Load with numeric and drop NaNs
 nyc_energy["Load"] = load_numeric
 nyc_energy = nyc_energy.dropna(subset=["Load"])
-# IQR-based Outlier Removal
+
+# clean up data (remove bad rows)
 before = len(nyc_energy)
-
-# Q1 = nyc_energy["Load"].quantile(0.25)
-# Q3 = nyc_energy["Load"].quantile(0.75)
-# IQR = Q3 - Q1
-# lower_bound = Q1 - 2 * IQR
-# upper_bound = Q3 + 2 * IQR
-
  # only replacing 0s and NaNs
 lower_bound = 100
-# upper_bound = np.inf
 print("To remove outlier 0s - lower_bound: " + str(lower_bound))
 # print("upper_bound: " + str(upper_bound))
-
 nyc_energy = nyc_energy[
     (nyc_energy["Load"] >= lower_bound)
 ]
-
 after = len(nyc_energy)
-
 print(f"Rows before cleaning: {before}")
 print(f"Rows after cleaning: {after}")
 print(f"Total rows dropped: {before - after}")
-
 # Save the fully-featured cleaned table into the database
 nyc_energy.to_sql("nyc_energy_cleaned", conn, if_exists="replace", index=False)
 

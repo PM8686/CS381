@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import zipfile
 
-# Step 1: Set up directories
+# Set up directories
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ZIP_DIR = os.path.join(BASE_DIR, "zips")
 CSV_DIR = os.path.join(BASE_DIR, "csvs")
@@ -12,7 +12,7 @@ CSV_DIR = os.path.join(BASE_DIR, "csvs")
 os.makedirs(ZIP_DIR, exist_ok=True)
 os.makedirs(CSV_DIR, exist_ok=True)
 
-# Step 2: Scrape the page for .zip links
+# Scrape the page for .zip links
 BASE_URL = "https://mis.nyiso.com/public/" 
 LIST_URL = "https://mis.nyiso.com/public/P-58Blist.htm"
 
@@ -25,7 +25,7 @@ zip_links = [urljoin(BASE_URL + '/', a['href']) for a in soup.find_all('a', href
 
 print(f"Found {len(zip_links)} zip files.")
 
-# Step 3: Download each .zip and extract
+# Download each .zip and extract
 for link in zip_links:
     zip_filename = os.path.basename(link)
     zip_path = os.path.join(ZIP_DIR, zip_filename)
@@ -45,7 +45,7 @@ for link in zip_links:
     else:
         print(f"Skipping {zip_filename} (already exists).")
 
-    # Step 4: Extract contents
+    # Extract contents
     print(f"Extracting {zip_filename}...")
     try:
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -54,4 +54,4 @@ for link in zip_links:
     except zipfile.BadZipFile as e:
         print(f"Error extracting {zip_filename}: {e}")
 
-print("Done.")
+print("Zips and CSVs downloaded")
