@@ -8,7 +8,7 @@ In this project, I use machine learning to accurately predict the energy consump
 Two files are needed to run the project: Final_Project.ipynb and nyc_energy_and_weather.db
 
 1. Download those two files to the same directory within Google Drive.
-2. Within Final_Project.ipynb, edit the first cell so that the path to the database that is being imported is the same was where the nyc_energy_and_weather.db that was just downloaded is stored
+2. Within Final_Project.ipynb, edit the third cell so that the path to the database that is being imported is the same was where the nyc_energy_and_weather.db that was just downloaded is stored
 3. Select within the top bar "Runtime" --> then "Run all"
     - if google drives asks to "Permit this notebook to access your Google Drive files?," click "Connect to Google Drive" --> Choose the email account associated with the google drive that the above files were downloaded into --> Permit access
 4. See the results of each cell, the final cell shows a summary of the best models, which model was the best of all (this being the final model that I chose for the project), and analysis of success.
